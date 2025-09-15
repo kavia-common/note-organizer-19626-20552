@@ -1,75 +1,46 @@
-# Nuxt Minimal Starter
+# Ocean Notes — Nuxt 3
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Playful, vibrant, and efficient notes management UI built with Nuxt 3.
+
+- Ocean Professional theme with primary (#EC4899) and secondary (#8B5CF6)
+- Sidebar navigation (All, Pinned, Archived, Trash) + tags
+- Top bar with search and quick actions
+- Notes list with pin, archive, delete
+- Editor with title, content, tags, and color
+- LocalStorage persistence (no backend required)
 
 ## Setup
 
-Make sure to install dependencies:
+Install dependencies:
 
 ```bash
-# npm
 npm install
-
-# pnpm
-pnpm install
-
-# yarn
-yarn install
-
-# bun
-bun install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+## Development
 
 ```bash
-# npm
 npm run dev
-
-# pnpm
-pnpm dev
-
-# yarn
-yarn dev
-
-# bun
-bun run dev
 ```
+
+Visit http://localhost:3000
 
 ## Production
 
-Build the application for production:
-
 ```bash
-# npm
 npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
 npm run preview
-
-# pnpm
-pnpm preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
 ```
 
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+## Structure
+
+- app.vue — App shell, layout, and wiring
+- components/ — Sidebar, Topbar, NotesList, NoteEditor
+- pages/index.vue — Main page with list + editor split view
+- stores/notes.ts — Lightweight store with persistence
+- assets/main.css — Utility CSS and theme helpers
+
+## Notes
+
+- This frontend is self-contained and uses localStorage. Swap the store with API calls to integrate with a backend.
+- Theme variables are defined in app.vue :root for easy customization.
