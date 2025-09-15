@@ -57,9 +57,18 @@ function _createNotesStore() {
       const saved = localStorage.getItem(STORAGE_KEY)
       const savedTags = localStorage.getItem(TAGS_KEY)
       const savedActive = localStorage.getItem(ACTIVE_KEY)
-      if (saved) notes.value = JSON.parse(saved)
-      if (savedTags) tags.value = JSON.parse(savedTags)
-      if (savedActive) activeNoteId.value = JSON.parse(savedActive)
+      if (saved) {
+        const parsed = JSON.parse(saved)
+        notes.value = Array.isArray(parsed) ? parsed : []
+      }
+      if (savedTags) {
+        const parsedTags = JSON.parse(savedTags)
+        tags.value = Array.isArray(parsedTags) ? parsedTags : []
+      }
+      if (savedActive) {
+        const parsedActive = JSON.parse(savedActive)
+        activeNoteId.value = typeof parsedActive === 'string' || parsedActive === null ? parsedActive : null
+      }
       if (notes.value.length === 0) {
         // Seed with a welcome note to showcase the style
         const id = _createId()
@@ -79,7 +88,10 @@ function _createNotesStore() {
         activeNoteId.value = id
       }
     } catch (e) {
-      // ignore
+      // In case of any parsing error, ensure defaults are arrays
+      notes.value = Array.isArray(notes.value) ? notes.value : []
+      tags.value = Array.isArray(tags.value) ? tags.value : []
+      activeNoteId.value = typeof activeNoteId.value === 'string' || activeNoteId.value === null ? activeNoteId.value : null
     }
   }
 

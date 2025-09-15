@@ -97,7 +97,8 @@ function selectNote(id: string) {
 }
 
 function togglePin(id: string) {
-  const note = notesStore.notes.find(n => n.id === id)
+  // notes is a Ref<Note[]>, use .value to access the array
+  const note = notesStore.notes.value.find(n => n.id === id)
   if (note) {
     notesStore.updateNote(id, { pinned: !note.pinned })
   }

@@ -46,10 +46,10 @@ defineEmits<{
 }>()
 
 const store = useNotesStore()
-const activeNote = computed(() => store.notes.find(n => n.id === props.activeNoteId) ?? null)
+const activeNote = computed(() => store.notes.value.find(n => n.id === props.activeNoteId) ?? null)
 
 function onArchive(id: string) {
-  const n = store.notes.find(n => n.id === id)
+  const n = store.notes.value.find(n => n.id === id)
   if (!n) return
   if (n.archived) store.unarchiveNote(id)
   else store.archiveNote(id)
